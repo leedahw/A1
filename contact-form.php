@@ -1,5 +1,5 @@
 <?php
-//Contact Form
+//contact-form.php
 ?>
 
 <h1>CONTACT US</h1>
@@ -13,7 +13,7 @@
     
 </head>
 <body>
-    <form action = "processingContactForm.php" method = "POST" enctype="multipart/form-data">
+    <form action = "process-contact-form.php" method = "POST" enctype="multipart/form-data">
     Name: <input type ="text" name ="name" required><br/>
     <br/>
     Email Address: <input type = "email" name ="emailAddress" required><br/>
@@ -27,7 +27,7 @@
         <input type = "checkbox" name = "career" value = "career"><label for ="career">Career</label><br/>
     <br/>
     Your Role: <br/>
-    <select name="memberRole" id="memberRole">
+    <select name="userRole" id="userRole">
         <option value = "writer">Writer</option>
         <option value = "contributor">Contributor</option>
         <option value = "administrator">Administrator</option>
@@ -36,5 +36,3 @@
     <br/>
     <input type = "submit" value="Submit">
     </form>
-    
-</body>

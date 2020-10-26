@@ -1,5 +1,5 @@
 <?php
-include ('standardheader.html');
+include('includes/standardheader.html');
 ?>
 </head>
 <h1>WELCOME</h1>
@@ -14,15 +14,17 @@ $stmt = $pdo->prepare("SELECT * FROM `article`");
 
 $stmt->execute();?>
 
-<a href = "insertArticle.php">Add Article</a>
+<a href = "insert-article.php">Add Article</a>
 
 <?php
 while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {    
 echo("<p>");
-		echo($row["articleId"]." ".$row["title"]." ".$row["author"]." ".$row["content"]); 
+        echo($row["articleId"]);?><br/><?php
+        echo($row["title"]);?><br/>
+
         ?>
-		<a href="editarticle.php?articleId=<?php echo($row["articleId"]); ?>">Edit</a>
-		<a href="deletearticle.php?articleId=<?php echo($row["articleId"]); ?>">Delete</a>
+		<a href="edit-article.php?articleId=<?php echo($row["articleId"]); ?>">Edit</a>
+		<a href="delete-article.php?articleId=<?php echo($row["articleId"]); ?>">Delete</a>
 		<?php
 		echo("</p>");
 }      
@@ -30,7 +32,9 @@ echo("<p>");
 
 </body>
 <br/>
+<a href= "logout.php">Logout<a/>
+<br/>
 <?php
-include ('cookies.html');
+include('includes/cookies.html');
 ?> 
 </html>
