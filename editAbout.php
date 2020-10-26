@@ -7,7 +7,7 @@ $personId = $_GET["personId"];
 //get person record form the database table
 include('includes/dbconfig.php');
 
-$stmt = $pdo->prepare("SELECT * FROM `person` 
+$stmt = $pdo->prepare("SELECT * FROM `about` 
 	WHERE `personId` = $personId");
 
 $stmt->execute();

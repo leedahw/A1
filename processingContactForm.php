@@ -4,7 +4,7 @@
 //receive input
 $name = $_POST["name"];
 $emailAddress = $_POST["emailAddress"];
-$memberType = $_POST["memberType"];
+$memberRole = $_POST["memberRole"];
 $industry = $_POST["industry"];
 $career = $_POST["career"];
 $technical = $_POST["technical"];
@@ -17,8 +17,8 @@ $dbusername = "root";
 $dbpassword = "";
 $pdo = new PDO($dsn, $dbusername, $dbpassword);
 
-$stmt = $pdo->prepare("INSERT INTO `contactsubmission` (`submissionId`, `name`, `emailAddress`, `technical`, `industry`, `career`, `memberType`) 
-VALUES (NULL, '$name', '$emailAddress', '$technical', '$industry', '$career', '$memberType');"
+$stmt = $pdo->prepare("INSERT INTO `contactsubmission` (`submissionId`, `name`, `emailAddress`, `technical`, `industry`, `career`, `memberRole`) 
+VALUES (NULL, '$name', '$emailAddress', '$technical', '$industry', '$career', '$memberRole');"
 );
 
 $stmt->execute();

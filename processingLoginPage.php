@@ -1,6 +1,6 @@
 <?php
 //processing the login.php
-session_start();
+
 //receive input
 $emailAddress = $_POST["emailAddress"];
 $password = $_POST["password"];
