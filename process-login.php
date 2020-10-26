@@ -21,6 +21,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 if($row["userType"]=='admin'){
 	//successful username/password combination
 	$_SESSION["userId"] = $row["userId"];
+	$_SESSION["isAdmin"] = $row["isAdmin"];
 	?><p>Welcome Back, Admin!</p>
 	<a href="homepage.php">Go to Dashboard</a><?php
 }elseif($row["userType"] == 'member'){
