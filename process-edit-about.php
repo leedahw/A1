@@ -1,16 +1,16 @@
 <?php
+session_start();
 //process-edit-about.php
 
-//receive POST data from edit-form
 $content = $_POST["content"];
 
+//update about record (row) with edit about data
 include('includes/dbconfig.php');
 
-$stmt = $pdo->prepare("UPDATE `about` 
-	SET `content` = '$content'
-	WHERE `about`.`content` = $content;");
+$stmt = $pdo->prepare("UPDATE `about` SET `content` = '$content'
+WHERE `about`.`aboutId` = 1 ;");
 
 $stmt->execute();
 
-header("Location: homePage.php");
+header("Location: about.php");
 ?>

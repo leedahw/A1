@@ -1,4 +1,5 @@
 <?php
+session_start();
 include('includes/standardheader.html');?>
 
 <!DOCTYPE html>
@@ -16,12 +17,11 @@ include('includes/standardheader.html');?>
 	$stmt->execute();
 
 	while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {     
-		//print_r($row); // recursively print out object.
-		echo("<p>");
+		// recursively print out object.
 		echo($row["content"]); //or $row[0];
 		?>
-		<a href="edit-about.php<?php echo($row["content"]); ?>"><br/>Edit</a>
+		<a href="edit-about.php?aboutId=<?php echo($row["aboutId"]); ?>"><br/>Edit</a>
 		<?php
-		echo("</p>");
+		
 	}
 ?>
