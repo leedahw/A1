@@ -1,26 +1,32 @@
 <?php
 session_start();
-if($row["userType"]==admin){
+if($_SESSION["userType"]=='admin'){
 	//allowed to see this page
-	//add-article.php
+	//insert-article.php
 ?><!DOCTYPE html>
 	<html>
 	<head>
 	</head>
 	<body>
 	<form action="process-insert-article.php" method="POST">
-		Title: <input type="text" name="title" />
-		Author: <input type="text" name="author" />
-		Preview: <input type="text" name="content" />
-		Link: <input type="URL" name="articleLink" />
-		<input type="submit" />
+		Title: <input type="text" name="title" /><br/><br/>
+		Author: <input type="text" name="author" /><br/><br/>
+		Preview: <input type="text" name="content" /><br/><br/>
+		Category: <select name="category" id="category">
+			<option value = "technical">technical</option>
+			<option value = "industry">industry</option>
+			<option value = "career">career</option>
+		</select><br/><br/>
+		Link: <input type="text" name="articleLink" /><br/><br/>
+
+		<input type="submit" value = "Submit" />
 	</form>
 	</body>
     </html><?php
 }else{    
 	//DO NOT SHOW this page
 	?>
-	<p>ACCESS DENIED. Please login here:</p>
+	<p>ACCESS DENIED. Admin Access Only</p>
     <a href="login.php">Login page</a><?php
 }
 ?>
