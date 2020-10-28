@@ -10,9 +10,9 @@
 </head>
 <body>
     <form action = "process-login.php" method = "POST">
-    emailAddress: <input type = "text" name ="emailAddress"/><br/>
+    emailAddress: <input type = "email" name ="emailAddress" required/><br/>
     <br/>
-    password: <input type = "password" name = "password"/><br/>
+    password: <input type = "password" name = "password" required/><br/>
     <br/>
     <input type = "submit" value="login">
     </form>
