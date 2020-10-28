@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 26, 2020 at 05:42 AM
+-- Generation Time: Oct 28, 2020 at 05:09 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -24,23 +24,48 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `about`
+--
+
+CREATE TABLE `about` (
+  `aboutId` int(11) NOT NULL,
+  `content` varchar(1000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `about`
+--
+
+INSERT INTO `about` (`aboutId`, `content`) VALUES
+(1, 'I just changed this about text');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `article`
 --
 
 CREATE TABLE `article` (
-  `articleId` int(11) NOT NULL,
-  `title` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `author` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `content` varchar(5000) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `articleLink` varchar(1000) COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `articleId` int(20) NOT NULL,
+  `title` varchar(1000) NOT NULL,
+  `author` varchar(50) NOT NULL,
+  `content` varchar(10000) NOT NULL,
+  `articleLink` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `category` varchar(20) NOT NULL,
+  `featured` varchar(10) NOT NULL DEFAULT 'no'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `article`
 --
 
-INSERT INTO `article` (`articleId`, `title`, `author`, `content`, `articleLink`) VALUES
-(1, 'Test', 'Test', 'Testing. Nearly nine out of 10 Canadians who have made a career change say they\'re happier since switching paths, a recent survey has found.', 'https://www.cbc.ca/news/business/canadian-career-change-1.5370391');
+INSERT INTO `article` (`articleId`, `title`, `author`, `content`, `articleLink`, `category`, `featured`) VALUES
+(4, 'How Frontend Developers Can Empower Designer’s Work', 'Sandrina Pereira', 'This article is mostly directed at you, dear Frontend Developer, who enjoys implementing user interfaces but struggles in aligning expectations with designers you work with. Perhaps you are referred to as the “UI Developer” or “UX Engineer.” Regardless of the title that you carry around, your job (and as well as mine) consists of more than breathing life into design files. We are also responsible for filling the gap between the design and development workflows. However, when crossing that bridge, we are faced with multiple challenges.', 'https://www.smashingmagazine.com/2019/10/frontend-developers-empower-designers-work/', 'career', 'no'),
+(5, 'Most Canadians who switch careers are happier for it, survey finds', 'Brandie Weikle', 'Nearly nine out of 10 Canadians who have made a career change say they\'re happier since switching paths, a recent survey has found.', 'https://www.cbc.ca/news/business/canadian-career-change-1.5370391', 'career', 'no'),
+(6, 'Why more and more Torontonians are shelling out $10K for coding crash courses', 'Kate McGillivray', 'A growing number of people in Toronto are spending up to $10,500 to learn digital skills, such as computer coding and web design, in the hopes that they will land jobs in the tech sector.And new schools are opening to meet the demand. \"It\'s grown tremendously,\" said Jeremy Shaki, co-founder of Lighthouse Labs, which offers web development boot camps. The school doubled the number of its graduates between 2015 and 2016.', 'https://www.cbc.ca/news/canada/toronto/toronto-tech-bootcamps-growing-1.3956891', 'industry', 'yes'),
+(7, 'Mastering Design Critiques', 'Jonny Czar', 'Critique is not a trivial thing Getting design feedback isn’t a simple task. Designers in small teams struggle due lack of structure, maturity, and time in product development sprint. Designers in large teams struggle with silos, disconnected projects, and bureaucracy. By applying Design Critique in our design roadmap, it was possible to connect projects, improve design quality and handoff, and empower a positive feedback culture in the team. I led the Design Critique sessions at Itaú, working side by side the Design Team. But it’d be unfair to say that I’m the only responsible for this, since the team has actively participated in the sessions and we went through this journey together. So, I wrote down this article to tell you how we ran effective Design Critique in Itaú’s Design team, sharing framework, experiences and learnings.', 'https://uxdesign.cc/design-critique-design-better-products-through-team-collaboration-4c4f26a7be5f', 'tech', 'no'),
+(8, 'Software Developer Trends of 2020 and Beyond', 'The Educative Team at Medium', 'The new decade is upon us and with it comes a flood of excitement for the changes and trends we will see in tech. Software development has become more integral to nearly every sector of the world, so developments and changes in software development have a vast impact on our lives. While we cannot always accurately predict what lies ahead for tech, there are some trends that we expect to continue into the new decade. Let’s discuss eight software development trends that we expect to see in 2020 and beyond.', 'https://medium.com/better-programming/software-developer-trends-of-2020-and-beyond-d1b955bc46b8', 'industry', 'no'),
+(9, 'State of the API 2020: Investments remain strong despite challenges', 'Ryan Daws', 'Postman’s State of the API report for 2020 suggests that investments have remained strong despite the challenging economic climate.  The report is the most comprehensive survey of the API industry—surveying a total of 13,586 developers, testers, executives, and others. Almost half of the respondents claim that investment and resources into APIs will increase over the next 12 months. Another third say that investments will remain about the same—which is still heartening given the wider economic and social devastation reaped by the ongoing pandemic.', 'https://developer-tech.com/news/2020/sep/29/state-of-the-api-2020-investments-strong-challenges/', 'tech', 'no');
 
 -- --------------------------------------------------------
 
@@ -50,90 +75,57 @@ INSERT INTO `article` (`articleId`, `title`, `author`, `content`, `articleLink`)
 
 CREATE TABLE `contactsubmission` (
   `submissionId` int(11) NOT NULL,
-  `name` varchar(16) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `emailAddress` varchar(16) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `technical` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `industry` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `career` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `memberRole` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `name` varchar(50) NOT NULL,
+  `emailAddress` varchar(50) NOT NULL,
+  `interests` varchar(20) CHARACTER SET utf32 COLLATE utf32_unicode_ci NOT NULL,
+  `userRole` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `contactsubmission`
 --
 
-INSERT INTO `contactsubmission` (`submissionId`, `name`, `emailAddress`, `technical`, `industry`, `career`, `memberRole`) VALUES
-(1, 'test', 'test@test.com', '0', '0', '0', ''),
-(36, 'lana', 'admin@admin.com', ' ', 'industry', ' ', ''),
-(37, 'lana', 'admin@admin.com', ' ', 'industry', ' ', ''),
-(38, 'yougmin', 'youngmin@ko.com', 'technical', ' ', ' ', ''),
-(39, 'yougmin', 'youngmin@ko.com', 'technical', ' ', ' ', ''),
-(40, 'yougmin', 'youngmin@ko.com', 'technical', ' ', ' ', ''),
-(41, 'alana lee', 'alana@lee.com', 'technical', 'industry', 'career', 'administrator');
+INSERT INTO `contactsubmission` (`submissionId`, `name`, `emailAddress`, `interests`, `userRole`) VALUES
+(1, 'user', 'user@gmail.com', 'career', 'administrator'),
+(2, 'test', 'test@test.com', 'industry,career', 'contributor'),
+(3, 'test2', 'test2@test.com', 'tech', 'writer'),
+(8, 'myk', 'myk@gmail.com', 'industry,career', 'writer');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `member`
+-- Table structure for table `user`
 --
 
-CREATE TABLE `member` (
+CREATE TABLE `user` (
   `userId` int(11) NOT NULL,
-  `fName` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `lName` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `emailAddress` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fName` varchar(50) NOT NULL,
+  `lName` varchar(50) NOT NULL,
+  `emailAddress` varchar(50) NOT NULL,
+  `password` varchar(20) NOT NULL,
   `DOB` datetime NOT NULL,
-  `userType` varchar(16) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'member'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='collects member info from signup. includes edits';
+  `userType` text NOT NULL DEFAULT 'member',
+  `isAdmin` tinyint(4) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `member`
+-- Dumping data for table `user`
 --
 
-INSERT INTO `member` (`userId`, `fName`, `lName`, `emailAddress`, `password`, `DOB`, `userType`) VALUES
-(1, 'admin', 'admin', 'admin@admin.com', '123456', '2020-10-07 22:24:51', 'admin'),
-(2, 'emily', 'hamster', 'emily@hamster.com', 'abcdef', '1900-10-07 22:00:00', 'member'),
-(3, 'TEST', 'TEST', 'TEST@TEST.COM', 'zyxwv', '2020-09-01 12:00:00', 'member'),
-(4, 'Alana', 'Lee', 'alanalee@gmail.com', '1234567', '1995-03-18 12:00:00', 'member'),
-(5, 'mason', 'ko', 'mason@ko.com', '123456', '1997-03-18 00:00:00', 'member'),
-(6, 'aaaa', 'aaaaa', 'aaaaa@gmail.com', 'aaaaa', '0000-00-00 00:00:00', 'member');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `member-article`
---
-
-CREATE TABLE `member-article` (
-  `memberId` int(11) NOT NULL,
-  `articleId` int(11) NOT NULL,
-  `liked` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `membertypes`
---
-
-CREATE TABLE `membertypes` (
-  `roleId` int(11) NOT NULL,
-  `memberType` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `membertypes`
---
-
-INSERT INTO `membertypes` (`roleId`, `memberType`) VALUES
-(1, 'writer'),
-(2, 'contributor'),
-(3, 'administrator');
+INSERT INTO `user` (`userId`, `fName`, `lName`, `emailAddress`, `password`, `DOB`, `userType`, `isAdmin`) VALUES
+(1, 'admin', 'admin', 'admin@admin.com', '123456', '1995-03-18 12:00:00', 'admin', 1),
+(2, 'alana', 'lee', 'alana@lee.com', 'aaaaaa', '1997-03-18 00:00:00', 'member', 0),
+(3, 'alana', 'lee', 'alana@lee.com', 'aaaaaa', '1997-03-18 00:00:00', 'member', 0);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `about`
+--
+ALTER TABLE `about`
+  ADD PRIMARY KEY (`aboutId`);
 
 --
 -- Indexes for table `article`
@@ -148,44 +140,38 @@ ALTER TABLE `contactsubmission`
   ADD PRIMARY KEY (`submissionId`);
 
 --
--- Indexes for table `member`
+-- Indexes for table `user`
 --
-ALTER TABLE `member`
+ALTER TABLE `user`
   ADD PRIMARY KEY (`userId`);
-
---
--- Indexes for table `membertypes`
---
-ALTER TABLE `membertypes`
-  ADD PRIMARY KEY (`roleId`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
+-- AUTO_INCREMENT for table `about`
+--
+ALTER TABLE `about`
+  MODIFY `aboutId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `article`
 --
 ALTER TABLE `article`
-  MODIFY `articleId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `articleId` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `contactsubmission`
 --
 ALTER TABLE `contactsubmission`
-  MODIFY `submissionId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `submissionId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `member`
+-- AUTO_INCREMENT for table `user`
 --
-ALTER TABLE `member`
-  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT for table `membertypes`
---
-ALTER TABLE `membertypes`
-  MODIFY `roleId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE `user`
+  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
