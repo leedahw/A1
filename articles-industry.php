@@ -1,12 +1,12 @@
 <?php session_start();
 if(isset($_SESSION["userId"])){
     include("includes/standardheader.html");
-
+    $articleId = $_GET["articleId"];
     //get records from db vv
 include("includes/dbconfig.php");
 
 
-$stmt = $pdo->prepare("SELECT * FROM `article` WHERE `category` = 'tech'");
+$stmt = $pdo->prepare("SELECT * FROM `article` WHERE `category` = 'industry'");
 
 $stmt->execute();
 while ($row = $stmt->fetch(PDO:: FETCH_ASSOC)){
@@ -22,6 +22,7 @@ while ($row = $stmt->fetch(PDO:: FETCH_ASSOC)){
     echo($row["content"]);
     echo("</p>");?>
 
+    <a href = "view-article.php?articleId=<?php echo($row["articleId"]);?>">Read More</a><br/>
     <a href = "<?php echo($row["articleLink"]);?>">See Full Article</a><br/>
 <?php
 }
