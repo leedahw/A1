@@ -13,11 +13,15 @@ if($_SESSION["userType"]=='admin'){
 		Author: <input type="text" name="author" /><br/><br/>
 		Preview: <input type="text" name="content" /><br/><br/>
 		Category: <select name="category" id="category">
-			<option value = "technical">technical</option>
+			<option value = "tech">tech</option>
 			<option value = "industry">industry</option>
 			<option value = "career">career</option>
+			</select><br/><br/>
+		Featured: <select name="featured" id="featured">
+			<option value = "yes">yes</option>
+			<option value = "no">no</option>
 		</select><br/><br/>
-		Link: <input type="text" name="articleLink" /><br/><br/>
+		Link: <input type="URL" name="articleLink" /><br/><br/>
 
 		<input type="submit" value = "Submit" />
 	</form>

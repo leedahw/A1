@@ -5,16 +5,12 @@ if($_SESSION["userType"]=='admin'){
 //connect to db
 	include("includes/dbconfig.php");
 
-    $stmt = $pdo->prepare("SELECT * FROM `article`
-    WHERE `articleId` = $articleId");
+    $stmt = $pdo->prepare("SELECT * FROM `article` 
+    WHERE `article` . `articleId` = $articleId");
 
     $stmt->execute();
 
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
-// echo($row["title"]);
-// echo($row["author"]);
-// echo($row["content"]);
-// echo($row["articleLink"]);
 
 //show a prefilled form we can edit
 ?>
@@ -31,10 +27,11 @@ if($_SESSION["userType"]=='admin'){
         <select name="featured" id="featured">
             <option value= "yes">yes</option>
             <option value="no">no</option>
-</select>
+    </select><br/>
 	Preview: <input type="textarea" size="30" name="content" value="<?php echo($row["content"]);?>"/><br/>
-	Article Link: <input type="text" name="articleLink" value="<?php echo($row["articleLink"]);?>"/>
-	<input type="hidden" name="articleId" value="<?php echo($row["articleId"]);?>">
+	Article Link: <input type="URL" name="articleLink" value="<?php echo($row["articleLink"]);?>"/>
+    <input type="hidden" name="articleId" value="<?php echo($row["articleId"]);?>">
+    <input type="hidden" name="articleId" value="<?php echo($row["featured"]);?>">
 	<input type="submit" />
 </form><?php
 }else{
