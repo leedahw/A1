@@ -7,21 +7,25 @@ if(isset($_SESSION["userId"])){
 //show the homepage
     include("includes/dbconfig.php");
 ?>
+
 <h1>IMM NEWS NETWORK</h1>
 
 <p>The IMM News Network is a site for students in the Interactive Multimedia Management program at Sheridan College.</p>
 
-    <a href = "view-contact.php">View Contact</a>
+    <a href = "view-contact.php">View Contact</a><br/><br/>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/PcY9_mCT2D8" 
+        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen></iframe>
 
-<br/>
-<br/>
+<br/><br/>
 <h2>Featured Article</h2>
 <?php 
 $stmt = $pdo->prepare("SELECT * FROM `article` WHERE `article`.`featured` = 'yes'");
 
 $stmt->execute();
 
-while($row = $stmt->fetch(PDO:: FETCH_ASSOC)) {
+while($row = $stmt->fetch(PDO:: FETCH_ASSOC)) {?>
+    <img src = "uploads/<?php echo($row["img"]);?>" alt="img" width= "300"/><?php
     echo("<h4>");
     echo($row["title"]);
     echo("</h4>");
@@ -34,7 +38,7 @@ while($row = $stmt->fetch(PDO:: FETCH_ASSOC)) {
     echo($row["content"]);
     echo("</p>");?>
 
-    <a href = "<?php echo($row["articleLink"]); ?>" target="_blank">See Full Article</a><br/><?php
+    <a href = "<?php echo($row["articleLink"]); ?>" target = "_blank">See Full Article</a><br/><?php
 }
 ?> 
 <br/>
