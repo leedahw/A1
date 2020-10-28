@@ -5,6 +5,7 @@ if(isset($_SESSION["userId"])){
     include("includes/standardheader.html");
 
 //show the homepage
+    include("includes/dbconfig.php");
 ?>
 <h1>IMM NEWS NETWORK</h1>
 
@@ -15,32 +16,39 @@ if(isset($_SESSION["userId"])){
 <br/>
 <br/>
 <h2>Featured Article</h2>
-<iframe src ="<?php echo($row["featured"] == 'yes')?> width="600" height ="400"></iframe>
+<?php 
+$stmt = $pdo->prepare("SELECT * FROM `article` WHERE `article`.`featured` = 'yes'");
+
+$stmt->execute();
+
+while($row = $stmt->fetch(PDO:: FETCH_ASSOC)) {
+    echo("<h4>");
+    echo($row["title"]);
+    echo("</h4>");
+
+    echo("<p>");?>
+    <label>By: </label><?php
+    echo($row["author"]);?><br/>
+    <label>Category: </label><?php
+    echo($row["category"]);?><br/><br/><?php
+    echo($row["content"]);
+    echo("</p>");?>
+
+    <a href = "<?php echo($row["articleLink"]); ?>" target="_blank">See Full Article</a><br/><?php
+}
+?> 
 <br/>
 
 <h2>Articles</h2>
 <br/>
-    <!-- <a href = "insert-article.php">Add Article</a>
-    <br/>
-    <br/>
-    <nav>
-        <a href = "articles/career1.php">Career Article 1</a>
-        <a href = "articles/career2.php">Career Article 2</a>
-        <a href = "articles/industry1.php">Industry Article 1</a>
-        <a href = "articles/industry2.php">Industry Article 2</a>
-        <a href = "articles/technical1.php">Technical Article 1</a>
-        <a href = "articles/techincal2.php">Technical Article 2</a>
-    </nav> -->
+<a href = "insert-article.php">Add Article</a>
+<br/>
+<br/>
     <a href = "articles-tech.php">Tech Articles</a>  
     <a href = "articles-industry.php">Industry Articles</a>  
     <a href = "articles-career.php">Career Articles</a> 
 <?php
-//get records from db vv
-include("includes/dbconfig.php");
-
-
 $stmt = $pdo->prepare("SELECT * FROM `article`");
-
 $stmt->execute();
 while ($row = $stmt->fetch(PDO:: FETCH_ASSOC)){
     echo("<h4>");
@@ -54,17 +62,36 @@ while ($row = $stmt->fetch(PDO:: FETCH_ASSOC)){
     echo($row["category"]);?><br/><br/><?php
     echo($row["content"]);
     echo("</p>");?>
-
+    <a href = "view-article.php?articleId=<?php echo($row["articleId"]);?>">Read More</a><br/>
     <a href = "<?php echo($row["articleLink"]);?>">See Full Article</a><br/>
 
 
 	<a href="edit-article.php?articleId=<?php echo($row["articleId"]); ?>">Edit</a>
-	<a href="delete-article.php?articleId=<?php echo($row["articleId"]); ?>">Delete</a><?php
+    <a href="delete-article.php?articleId=<?php echo($row["articleId"]); ?>">Delete</a>
+    <br/><br/>
+    <?php
 }
 ?>
 </body>
-
-
+<br/>
+<br/>
+<table>
+    <tr>
+        <th>Monthly Visitors: <th/>
+        <th>October -</th>
+        <td>17</td>
+        <th>September -</th>
+        <td>30</td>
+        <th>August -</th>
+        <td>7</td>
+        <th>July -</th>
+        <td>58</td>
+        <th>June -</th>
+        <td>22</td>
+        <th>May -</th>
+        <td>31</td>
+    <tr/>
+</table>
 <?php
 include('includes/cookies.html');
 
@@ -74,5 +101,3 @@ include('includes/cookies.html');
 <?php
 }
 ?> 
-
-</html>
