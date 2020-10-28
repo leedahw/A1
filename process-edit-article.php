@@ -9,13 +9,15 @@ $author = $_POST["author"];
 $category = $_POST["category"];
 $content = $_POST["content"];
 $articleLink = $_POST["articleLink"];
+$featured = $_POST["featured"]
 $articleId = $_POST["articleId"];
 
 //connect to db
 include("includes/dbconfig.php");
 
 //update db with declared var
-$stmt = $pdo->prepare("UPDATE `article` SET `title`='$title' , `author`='$author' , `category`='$category' , `content`='$content' , `articleLink`='$articleLink' 
+$stmt = $pdo->prepare("UPDATE `article` 
+SET `title`='$title' , `author`='$author' , `category`='$category' , `content`='$content' , `articleLink`='$articleLink', `featured`='$featured' 
 WHERE `article` . `articleId` = $articleId");
 
 $stmt->execute();

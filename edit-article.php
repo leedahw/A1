@@ -23,10 +23,15 @@ if($_SESSION["userType"]=='admin'){
     Author: <input type="text" name="author" value="<?php echo($row["author"]);?>"/><br/>
     <label for= "category">Select Category:</label>
         <select name="category" id="category">
-            <option value= "technical">technical</option>
+            <option value= "tech">tech</option>
             <option value= "industry">industry</opton>
             <option value= "career">career</option>
         </select><br/>
+    <label for= "featured">Set Featured?</label>
+        <select name="featured" id="featured">
+            <option value= "yes">yes</option>
+            <option value="no">no</option>
+</select>
 	Preview: <input type="textarea" size="30" name="content" value="<?php echo($row["content"]);?>"/><br/>
 	Article Link: <input type="text" name="articleLink" value="<?php echo($row["articleLink"]);?>"/>
 	<input type="hidden" name="articleId" value="<?php echo($row["articleId"]);?>">
