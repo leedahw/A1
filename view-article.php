@@ -14,7 +14,8 @@ WHERE `articleId` = $articleId");
 
 $stmt->execute();
 
-$row = $stmt->fetch(PDO:: FETCH_ASSOC);
+$row = $stmt->fetch(PDO:: FETCH_ASSOC);?>
+    <img src = "uploads/<?php echo($row["img"]);?>" alt="img" width= "600"/><?php
     echo("<h4>");
     echo($row["title"]);
     echo("</h4>");
@@ -26,17 +27,22 @@ $row = $stmt->fetch(PDO:: FETCH_ASSOC);
     echo($row["content"]);
     echo("</p>");?>
 
-    <a href = "view-article.php?articleId=<?php echo($row["articleId"]);?>">Read More</a><br/>
-    <a href = "<?php echo($row["articleLink"]);?>">See Full Article</a><br/>
+    <a href = "<?php echo($row["articleLink"]);?>" target = "_blank">See Full Article</a><br/>
 
-	<a href="edit-article.php?articleId=<?php echo($row["articleId"]); ?>">Edit</a>
-	<a href="delete-article.php?articleId=<?php echo($row["articleId"]); ?>">Delete</a><br/><?php
+    <form action = "like.php" method="POST" enctype="multipart/form-data">
+    <input type = "hidden" name="articleId" value = "<?php echo($articleId);?>">
+    <input type = "submit" name="like" value = "Like"/>
+    </form>
 
-?>
+    <form action = "unlike.php" method="POST" enctype="multipart/form-data">
+    <input type = "hidden" name="articleId" value = "<?php echo($articleId);?>">
+    <input type = "submit" name="unlike" value = "Unlike"/>
+    </form>
+
+   
+
 
 <?php
-
-
  }else{?>
     <p>ACCESS DENIED. Please Login</p>
     <a href = "login.php">Back to Login</a>

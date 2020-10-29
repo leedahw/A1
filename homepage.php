@@ -4,6 +4,7 @@ session_start();
 if(isset($_SESSION["userId"])){
     include("includes/standardheader.html");
 
+
 //show the homepage
     include("includes/dbconfig.php");
 ?>
@@ -20,8 +21,8 @@ if(isset($_SESSION["userId"])){
 <br/><br/>
 <h2>Featured Article</h2>
 <?php 
-$stmt = $pdo->prepare("SELECT * FROM `article` WHERE `article`.`featured` = 'yes'");
 
+$stmt = $pdo->prepare("SELECT * FROM `article` WHERE `article`.`featured` = 'yes'");
 $stmt->execute();
 
 while($row = $stmt->fetch(PDO:: FETCH_ASSOC)) {?>
@@ -52,8 +53,10 @@ while($row = $stmt->fetch(PDO:: FETCH_ASSOC)) {?>
     <a href = "articles-industry.php">Industry Articles</a>  
     <a href = "articles-career.php">Career Articles</a> 
 <?php
+
 $stmt = $pdo->prepare("SELECT * FROM `article`");
 $stmt->execute();
+
 while ($row = $stmt->fetch(PDO:: FETCH_ASSOC)){
     echo("<h4>");
     echo($row["title"]);
@@ -69,6 +72,7 @@ while ($row = $stmt->fetch(PDO:: FETCH_ASSOC)){
     <a href = "view-article.php?articleId=<?php echo($row["articleId"]);?>">Read More</a><br/>
     <a href = "<?php echo($row["articleLink"]);?>">See Full Article</a><br/>
 
+    <p>x people like this</p><br/>
 
 	<a href="edit-article.php?articleId=<?php echo($row["articleId"]); ?>">Edit</a>
     <a href="delete-article.php?articleId=<?php echo($row["articleId"]); ?>">Delete</a>

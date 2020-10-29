@@ -1,0 +1,26 @@
+<?php
+session_start();
+if(isset($_SESSION["userId"])){
+    include("includes/standardheader.html");
+
+$userId = $_SESSION["userId"];
+$articleId = $_POST["articleId"];
+$likeId = $_GET["likeId"];
+//show homepage
+    include("includes/dbconfig.php");
+    //if like id exist then 
+    $stmt = $pdo->prepare("INSERT INTO `likes` 
+    (`likeId`, `userId`, `articleId`) 
+    VALUES (NULL, '$userId', '$articleId');");
+
+$stmt->execute();
+
+header('Location: homepage.php');
+
+}else{
+    //do not show page?>
+    <p>ACCESS DENIED. Please Login</p>
+    <a href = "login.php">Back to Login</a>
+<?php
+}
+?>
