@@ -8,7 +8,6 @@ $articleId = $_POST["articleId"];
 $likeId = $_GET["likeId"];
 //show homepage
     include("includes/dbconfig.php");
-    //if like id exist then 
     $stmt = $pdo->prepare("INSERT INTO `likes` 
     (`likeId`, `userId`, `articleId`) 
     VALUES (NULL, '$userId', '$articleId');");

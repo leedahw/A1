@@ -1,5 +1,6 @@
 <?php
 session_start();
+if ($_SESSION["userType"]=='admin'){
 //process-edit-about.php
 
 $content = $_POST["content"];
@@ -13,4 +14,9 @@ WHERE `about`.`aboutId` = 1 ;");
 $stmt->execute();
 
 header("Location: about.php");
+}else{
 ?>
+<p>ACCESS DENIED. Admin Access Only.</p>
+<a href = "homepage.php">Back to Home</a><?php
+}
+?>                              

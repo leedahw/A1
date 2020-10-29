@@ -19,7 +19,7 @@
     Email Address: <input type = "email" name ="emailAddress" required><br/>
     <br/>
     Interests:
-        <input type = "checkbox" name = "interests[];" value = "technical"><label for = "technical">Technical</label>
+        <input type = "checkbox" name = "interests[];" value = "tech"><label for = "tech">Tech</label>
         <input type = "checkbox" name = "interests[];" value = "industry"><label for = "industry">Industry</label>
         <input type = "checkbox" name = "interests[];" value = "career"><label for ="career">Career</label><br/>
     <br/>

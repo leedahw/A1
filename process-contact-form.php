@@ -10,7 +10,7 @@ $userRole = $_POST["userRole"];
 
 
 
-//this part adds a new user to the 'user' table
+//this part adds a new user to the 'contactsubmission' table
 include('includes/dbconfig.php');
 
 $stmt = $pdo->prepare("INSERT INTO `contactsubmission` 

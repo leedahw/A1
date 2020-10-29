@@ -29,6 +29,15 @@ $row = $stmt->fetch(PDO:: FETCH_ASSOC);?>
 
     <a href = "<?php echo($row["articleLink"]);?>" target = "_blank">See Full Article</a><br/>
 
+    <?php 
+    $stmt = $pdo->prepare("SELECT count(*) FROM `likes` 
+    WHERE `likes` . `articleId` = $articleId");
+    
+    $stmt->execute();
+    $row = $stmt->fetchColumn();?>
+
+    <p><?php echo $row?> people like this</p>
+
     <form action = "like.php" method="POST" enctype="multipart/form-data">
     <input type = "hidden" name="articleId" value = "<?php echo($articleId);?>">
     <input type = "submit" name="like" value = "Like"/>

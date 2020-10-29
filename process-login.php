@@ -1,7 +1,7 @@
 <?php
 //start session
 session_start();
-//processing the login.php
+//processing the login
 
 //receive input
 $emailAddress = $_POST["emailAddress"];
@@ -19,16 +19,19 @@ $stmt->execute();
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if($row["userType"]=='admin'){
-	//successful username/password combination
+	//session declarations
 	$_SESSION["userId"] = $row["userId"];
-	$_SESSION["isAdmin"] = $row["isAdmin"];
+	$_SESSION["userType"] = $row["userType"];
+	//admin login
 	?><p>Welcome Back, Admin!</p>
 	<a href="homepage.php">Go to Dashboard</a><?php
+
 }elseif($row["userType"] == 'member'){
-	//incorrect username/password
+	//member login
 	?><p>Welcome Back, member!</p>
 		<a href="homepage.php">Go to Home</a><?php
 }else{
+	//incorrect input
 	?><p>Incorrect username/password. Please Try Again</p>
 	<a href = "login.php">Back to Login</a><?php
 }

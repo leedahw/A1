@@ -18,7 +18,7 @@ $stmt->execute();
 ?>
 <form action="process-edit-about.php" method="POST">
 	<input type="text" name="content" value="<?php echo($row["content"]);?>"/>
-    <input type="hidden" name ="aboutId" value="<?php echo($row["aboutId"]);?>">"
+    <input type="hidden" name ="aboutId" value="<?php echo($row["aboutId"]);?>">
     <input type="submit" value = "CONFIRM EDIT"/>
 </form>
 <?php 

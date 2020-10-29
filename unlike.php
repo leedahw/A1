@@ -9,7 +9,7 @@ $articleId = $_POST["articleId"];
 $likeId = $_GET["likeId"];
 //show homepage
     include("includes/dbconfig.php");
-        //if likeid exists in db 
+        //if likeid exists in db the delete
         $stmt = $pdo->prepare("DELETE FROM `likes` 
         WHERE `likes` . `userId` = $userId
         AND `likes` . `articleId` = $articleId");
