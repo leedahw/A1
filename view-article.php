@@ -1,14 +1,23 @@
-<?php 
-//homepage.php
-session_start();
-if(isset($_SESSION["userId"])){
+<?php session_start();
+//view-article.php
     include("includes/standardheader.html");
 
+$userId = $_SESSION["userId"];
 $articleId = $_GET["articleId"];
+
 //get records from db vv
 include("includes/dbconfig.php");
 
+$stmt = $pdo->prepare("SELECT * FROM `likes`
+WHERE `likes` . `userid` = $userId
+AND `likes` . `articleId` = $articleId");
 
+$stmt->execute();
+$row = $stmt->fetch(PDO::FETCH_ASSOC);?>
+<img src ="articles/img/<?php echo($row["likeicon"])?>" width = "50" alt = "likeicon">
+<br/>
+
+<?php
 $stmt = $pdo->prepare("SELECT * FROM `article`
 WHERE `articleId` = $articleId");
 
@@ -34,29 +43,28 @@ $row = $stmt->fetch(PDO:: FETCH_ASSOC);?>
     WHERE `likes` . `articleId` = $articleId");
     
     $stmt->execute();
-    $row = $stmt->fetchColumn();?>
-
+    $row = $stmt->fetchColumn();
+    ?>    
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="article page for IMM News Network">
+    <meta name="keywords" content="HTML, PHP, IMM, News, Network, article page">
+    <meta name="author" content="Alana Dahwoon Lee">
+</head>
+<body>
     <p><?php echo $row?> people like this</p>
 
     <form action = "like.php" method="POST" enctype="multipart/form-data">
     <input type = "hidden" name="articleId" value = "<?php echo($articleId);?>">
+    <input type = "hidden" id = "likeicon" name="likeicon" value = "likeicon.png">
     <input type = "submit" name="like" value = "Like"/>
     </form>
-
     <form action = "unlike.php" method="POST" enctype="multipart/form-data">
     <input type = "hidden" name="articleId" value = "<?php echo($articleId);?>">
     <input type = "submit" name="unlike" value = "Unlike"/>
-    </form>
-
-   
-
-
-<?php
- }else{?>
-    <p>ACCESS DENIED. Please Login</p>
-    <a href = "login.php">Back to Login</a>
-<?php
-}
-?> 
-
+    </form>   
+</body>
 </html>

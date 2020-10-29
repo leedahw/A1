@@ -1,9 +1,7 @@
 <?php session_start();
+include("includes/standardheader.html");
 //contact-form.php
 ?>
-
-<h1>CONTACT US</h1>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,6 +11,8 @@
     
 </head>
 <body>
+<h1>CONTACT US</h1>
+
     <form action = "process-contact-form.php" method = "POST" enctype="multipart/form-data">
     Name: <input type ="text" name ="name" required><br/>
     <br/>

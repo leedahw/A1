@@ -1,12 +1,13 @@
 <?php
 session_start();
 //unlike.php
+include("includes/standardheader.html");
 if(isset($_SESSION["userId"])){
-    include("includes/standardheader.html");
 
 $userId = $_SESSION["userId"];
 $articleId = $_POST["articleId"];
 $likeId = $_GET["likeId"];
+
 //show homepage
     include("includes/dbconfig.php");
         //if likeid exists in db the delete
@@ -24,3 +25,4 @@ header('Location: homepage.php');
 <?php
 }
 ?>
+

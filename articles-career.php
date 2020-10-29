@@ -1,7 +1,9 @@
 <?php session_start();
-if(isset($_SESSION["userId"])){
+//articles-career
     include("includes/standardheader.html");
-
+?>
+    <h2>Career Articles</h2>
+<?php
     //get records from db vv
 include("includes/dbconfig.php");
 
@@ -25,9 +27,4 @@ while ($row = $stmt->fetch(PDO:: FETCH_ASSOC)){
     <a href = "<?php echo($row["articleLink"]);?>">See Full Article</a><br/>
 <?php
 }
-}else{?>
-    <p>ACCESS DENIED. Please Login</p>
-    <a href = "login.php">Back to Login</a>
-<?php
-}
-?> 
+?>

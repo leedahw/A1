@@ -18,18 +18,14 @@ $stmt->execute();
 
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-if($row["userType"]=='admin'){
+if($row["userType"]){
 	//session declarations
 	$_SESSION["userId"] = $row["userId"];
 	$_SESSION["userType"] = $row["userType"];
 	//admin login
-	?><p>Welcome Back, Admin!</p>
-	<a href="homepage.php">Go to Dashboard</a><?php
+	?><p>Welcome Back!</p>
+	<a href="homepage.php">Go to Home</a><?php
 
-}elseif($row["userType"] == 'member'){
-	//member login
-	?><p>Welcome Back, member!</p>
-		<a href="homepage.php">Go to Home</a><?php
 }else{
 	//incorrect input
 	?><p>Incorrect username/password. Please Try Again</p>

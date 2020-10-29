@@ -1,14 +1,10 @@
-<?php 
+<?php session_start();
 //homepage.php
-session_start();
-if(isset($_SESSION["userId"])){
+
     include("includes/standardheader.html");
-
-
-//show the homepage
     include("includes/dbconfig.php");
 ?>
-
+<body>
 <h1>IMM NEWS NETWORK</h1>
 
 <p>The IMM News Network is a site for students in the Interactive Multimedia Management program at Sheridan College.</p>
@@ -26,7 +22,7 @@ $stmt = $pdo->prepare("SELECT * FROM `article` WHERE `article`.`featured` = 'yes
 $stmt->execute();
 
 while($row = $stmt->fetch(PDO:: FETCH_ASSOC)) {?>
-    <img src = "uploads/<?php echo($row["img"]);?>" alt="img" width= "300"/><?php
+    <img src = "uploads/<?php echo($row["img"]);?>" alt="img" width= "600"/><?php
     echo("<h4>");
     echo($row["title"]);
     echo("</h4>");
@@ -60,7 +56,9 @@ $stmt->execute();
 while ($row = $stmt->fetch(PDO:: FETCH_ASSOC)){
     echo("<h4>");
     echo($row["title"]);
-    echo("</h4>");
+    echo("</h4>");?>
+
+    <img src = "uploads/<?php echo($row["img"]);?>" alt="img" width= "200"/><?php
 
     echo("<p>");?>
     <label>By: </label><?php
@@ -70,9 +68,7 @@ while ($row = $stmt->fetch(PDO:: FETCH_ASSOC)){
     echo($row["content"]);
     echo("</p>");?>
     <a href = "view-article.php?articleId=<?php echo($row["articleId"]);?>">Read More</a><br/>
-    <a href = "<?php echo($row["articleLink"]);?>">See Full Article</a><br/>
-
-    <p>x people like this</p><br/>
+    <a href = "<?php echo($row["articleLink"]);?>">See Full Article</a><br/><br/>
 
 	<a href="edit-article.php?articleId=<?php echo($row["articleId"]); ?>">Edit</a>
     <a href="delete-article.php?articleId=<?php echo($row["articleId"]); ?>">Delete</a>
@@ -80,7 +76,6 @@ while ($row = $stmt->fetch(PDO:: FETCH_ASSOC)){
     <?php
 }
 ?>
-</body>
 <br/>
 <br/>
 <table>
@@ -100,12 +95,7 @@ while ($row = $stmt->fetch(PDO:: FETCH_ASSOC)){
         <td>31</td>
     <tr/>
 </table>
+</body>
 <?php
 include('includes/cookies.html');
-
- }else{?>
-    <p>ACCESS DENIED. Please Login</p>
-    <a href = "login.php">Back to Login</a>
-<?php
-}
 ?> 
