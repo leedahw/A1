@@ -39,6 +39,6 @@ $stmt->execute();
 }else{
 	//do not show?>
 <p>ACCESS DENIED.Admin Access Only.</p>
-<a href = "homepage.php">Back to Login</p><?php
+<a href = "homepage.php">Back to Home</p><?php
 }
 ?>

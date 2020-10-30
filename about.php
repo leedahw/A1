@@ -5,10 +5,10 @@ include('includes/standardheader.html');?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 	<h1>ABOUT</h1>
 </head>
-</html>
-
+<body>
 <?php
 	include('includes/dbconfig.php');
 
@@ -25,3 +25,5 @@ include('includes/standardheader.html');?>
 		
 	}
 ?>
+</body>
+</html>

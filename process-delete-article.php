@@ -19,6 +19,6 @@ header("Location: homepage.php");
 }else{
     //block access?>
     <p>ACCESS DENIED. Admin Access Only.</p>
-<a href = "login.php">Back to Login</a><?php
+    <a href = "homepage.php">Back to Home</a><?php
 }
 ?>

@@ -10,8 +10,7 @@ include("includes/standardheader.html");
     <meta name="description" content="sign up page for IMM News Network">
     <meta name="keywords" content="HTML, PHP, IMM, News, Network">
     <meta name="author" content="Alana Dahwoon Lee">
-</head>
-
+    <title>signup page</title>
 </head>
 <body>
     <form action = "process-signup.php" method = "POST">

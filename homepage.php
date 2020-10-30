@@ -1,9 +1,17 @@
 <?php session_start();
 //homepage.php
-
     include("includes/standardheader.html");
     include("includes/dbconfig.php");
 ?>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="home page/ dashboard for IMM News Network">
+    <meta name="keywords" content="HTML, PHP, IMM, News, Network">
+    <meta name="author" content="Alana Dahwoon Lee">
+    <title>home page</title>
+</head>
 <body>
 <h1>IMM NEWS NETWORK</h1>
 
@@ -56,9 +64,7 @@ $stmt->execute();
 while ($row = $stmt->fetch(PDO:: FETCH_ASSOC)){
     echo("<h4>");
     echo($row["title"]);
-    echo("</h4>");?>
-
-    <img src = "uploads/<?php echo($row["img"]);?>" alt="img" width= "200"/><?php
+    echo("</h4>");
 
     echo("<p>");?>
     <label>By: </label><?php
@@ -72,7 +78,7 @@ while ($row = $stmt->fetch(PDO:: FETCH_ASSOC)){
 
 	<a href="edit-article.php?articleId=<?php echo($row["articleId"]); ?>">Edit</a>
     <a href="delete-article.php?articleId=<?php echo($row["articleId"]); ?>">Delete</a>
-    <br/><br/>
+    <br/><br/><br/>
     <?php
 }
 ?>
@@ -96,6 +102,7 @@ while ($row = $stmt->fetch(PDO:: FETCH_ASSOC)){
     <tr/>
 </table>
 </body>
+</html>
 <?php
 include('includes/cookies.html');
 ?> 

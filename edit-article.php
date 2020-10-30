@@ -2,7 +2,18 @@
 include('includes/standardheader.html');
 if($_SESSION["userType"]=='admin'){
 
-   $articleId = $_GET["articleId"];
+   $articleId = $_GET["articleId"];?>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="form to edit article page content">
+    <meta name="keywords" content="HTML, PHP, IMM, News, Network, article, edit, form">
+    <meta name="author" content="Alana Dahwoon Lee">
+    <title>edit article form</title>
+</head>
+<body>
+<?php        
 //connect to db
 	include("includes/dbconfig.php");
 
@@ -17,11 +28,7 @@ if($_SESSION["userType"]=='admin'){
 ?>
 <form action="process-edit-article.php" method="POST" enctype="multipart/form-data">
 File: <input type="file" name="img" id="img" value="<?php echo($row["img"]);?>"><br/>
-<!DOCTYPE html>
-    <html>
-    <head>
-    </head>
-    <body>
+
     <form action="process-edit-article.php" method="POST" enctype="multipart/formdata">
         Title: <input type="text" name="title" value="<?php echo($row["title"]);?>"/><br/>
         Author: <input type="text" name="author" value="<?php echo($row["author"]);?>"/><br/>
@@ -43,11 +50,12 @@ File: <input type="file" name="img" id="img" value="<?php echo($row["img"]);?>">
         <input type="submit" value="Confirm Edit"/>
     </form>
     </body>
-    </html><?php
+    </html>
+<?php
 }else{
 ?>
 <p>ACCESS DENIED. Admin Acess Only</p>
-<a href = "homepage.php">Bcck to Home</a><?php
+<a href = "homepage.php">Back to Home</a><?php
 
 
 }
